@@ -1,7 +1,9 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  resources :shots
+  resources :shots do
+    resources :comments
+  end
 
   devise_for :users, controllers: { registrations: 'registrations' }
 

@@ -1,30 +1,31 @@
+# frozen_string_literal: true
+
 class ShotsController < ApplicationController
-  before_action :set_shot, only: [:show, :edit, :update, :destroy]
+  before_action :set_shot, only: %i[show edit update destroy]
+  before_action :authenticate_user!, only: %i[edit update destroy]
 
   # GET /shots
   # GET /shots.json
   def index
-    @shots = Shot.all
+    @shots = Shot.all.order('created_at DESC')
   end
 
   # GET /shots/1
   # GET /shots/1.json
-  def show
-  end
+  def show; end
 
   # GET /shots/new
   def new
-    @shot = Shot.new
+    @shot = current_user.shots.build
   end
 
   # GET /shots/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /shots
   # POST /shots.json
   def create
-    @shot = Shot.new(shot_params)
+    @shot = current_user.shots.build(shot_params)
 
     respond_to do |format|
       if @shot.save
@@ -62,13 +63,14 @@ class ShotsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_shot
-      @shot = Shot.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def shot_params
-      params.require(:shot).permit(:title, :description, :user_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_shot
+    @shot = Shot.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def shot_params
+    params.require(:shot).permit(:title, :description, :user_shot)
+  end
 end

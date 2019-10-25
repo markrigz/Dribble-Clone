@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class RegistartionController < Devise::RegistartionController
+class RegistrationsController < Devise::RegistrationsController
   private
 
   def sign_up_params
