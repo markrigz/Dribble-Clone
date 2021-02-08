@@ -28,7 +28,7 @@ gem 'jbuilder', '~> 2.7'
 # gem 'capistrano-rails', group: :development
 gem 'acts_as_votable', '~> 0.11.1'
 gem 'bulma-rails', '~> 0.6.1'
-gem 'carrierwave', '~> 1.2', '>= 1.2.1'
+gem 'carrierwave', '~> 1.3'
 gem 'devise', '~> 4.3'
 gem 'gravatar_image_tag'
 gem 'impressionist', '~> 1.6'
